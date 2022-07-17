@@ -1,8 +1,12 @@
+DROP DATABASE IF EXISTS perntodo;
+
 CREATE DATABASE perntodo;
 
-CREATE TABLE todo(
+\c perntodo;
+
+CREATE TABLE IF NOT EXISTS todo(
     todo_id SERIAL PRIMARY KEY,
-    desciption VARCHAR(25)
+    desciption VARCHAR(250)
 );
 
 INSERT INTO todo(todo_id, description)
