@@ -24,7 +24,7 @@ const listTodoItems = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Todo items pulled from psql database through express Rest API
         </p>
         {data && listTodoItems()}
         <a
