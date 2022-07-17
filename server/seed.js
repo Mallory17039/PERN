@@ -1,14 +1,26 @@
 const fs = require('fs')
 const { Pool } = require('pg')
 
-const databaseUrl = "postgres://postgres:postgres@localHost:5432/perntodo";
+const databaseUrl = "postgres://postgres:gocougs@localhost";
 const pool = new Pool({
     connectionString: databaseUrl,
 })
 
-const seedQuery = fs.readFileSync('database.sql', { encoding: 'utf8' })
-pool.query(seedQuery, (err, res) => {
-		console.log(err, res)
-		console.log('Seeding Completed!')
-		pool.end()
+const dbQuery = fs.readFileSync('server/database.sql', { encoding: 'utf8' })
+pool.query(dbQuery, (err, res) => {
+                console.log(err, res)
+                console.log('Database created!')
+                pool.end()
+})
+
+const newDatabaseUrl = "postgres://postgres:gocougs@localhost/perntodo";
+const seedPool = new Pool({
+    connectionString: databaseUrl,
+})
+
+const seedQuery = fs.readFileSync('server/seed.sql', { encoding: 'utf8' })
+seedPool.query(seedQuery, (err, res) => {
+                console.log(err, res)
+                console.log('Database seeded!')
+                seedPool.end()
 })
